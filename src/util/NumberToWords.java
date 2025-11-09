@@ -71,7 +71,7 @@ public class NumberToWords {
         
         if (remainder > 0) {
             if (remainder < 10) {
-                result += "lẻ " + units[remainder];
+                result += "linh " + units[remainder];
             } else if (remainder < 20) {
                 if (remainder == 10) {
                     result += "mười";
@@ -94,16 +94,26 @@ public class NumberToWords {
     /**
      * Convert double (money) to Vietnamese words
      * @param amount The amount to convert
-     * @return Vietnamese words with "đồng"
+     * @return Vietnamese words with "đồng chẵn" (capitalized first letter, no "lẻ")
      */
     public static String convertMoney(double amount) {
+        if (amount == 0) {
+            return "Không đồng chẵn";
+        }
+        
         long wholePart = (long) amount;
         long decimalPart = Math.round((amount - wholePart) * 100);
         
-        String result = convert(wholePart) + " đồng";
-        
+        String result;
         if (decimalPart > 0) {
-            result += " " + convert(decimalPart) + " xu";
+            result = convert(wholePart) + " phẩy " + convert(decimalPart) + " xu";
+        } else {
+            result = convert(wholePart) + " đồng chẵn";
+        }
+        
+        // Capitalize first letter
+        if (result.length() > 0) {
+            result = result.substring(0, 1).toUpperCase() + result.substring(1);
         }
         
         return result;

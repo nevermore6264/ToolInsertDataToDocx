@@ -2,7 +2,6 @@ import controller.PartyAController;
 import javax.swing.*;
 import model.PartyAModel;
 import view.PartyAView;
-
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

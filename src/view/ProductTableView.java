@@ -287,35 +287,19 @@ public class ProductTableView extends JPanel {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
-            JTextArea textArea = new JTextArea();
-            textArea.setLineWrap(true);
-            textArea.setWrapStyleWord(true);
-            textArea.setOpaque(true);
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             
             if (value != null) {
-                textArea.setText(value.toString());
+                String text = value.toString();
+                // Replace \n with <br> for HTML rendering
+                text = "<html>" + text.replace("\n", "<br>") + "</html>";
+                setText(text);
             }
             
-            // Set colors based on selection
-            if (isSelected) {
-                textArea.setBackground(table.getSelectionBackground());
-                textArea.setForeground(table.getSelectionForeground());
-            } else {
-                textArea.setBackground(table.getBackground());
-                textArea.setForeground(table.getForeground());
-            }
+            setVerticalAlignment(SwingConstants.TOP);
+            setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             
-            // Set border
-            textArea.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-            
-            // Calculate preferred height based on number of lines
-            int lineCount = textArea.getLineCount();
-            int preferredHeight = Math.max(60, lineCount * 20 + 10); // Minimum 60, +20 per line
-            
-            // Set preferred size
-            textArea.setSize(table.getColumnModel().getColumn(column).getWidth(), preferredHeight);
-            
-            return textArea;
+            return this;
         }
     }
     

@@ -159,6 +159,46 @@ public class PartyAView extends JFrame {
                 loadProductsForRegion(selectedRegion);
             }
         });
+        
+        // Initialize with sample data for testing
+        initSampleData();
+    }
+    
+    /**
+     * Initialize form with sample data for testing
+     * TODO: Remove this method after testing
+     */
+    private void initSampleData() {
+        // Set region
+        cmbRegion.setSelectedIndex(0); // Nam
+        
+        // Set Party A name
+        txtPartyAName.setText("CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ ABC");
+        txtPartyAName.setForeground(Color.BLACK);
+        
+        // Set address
+        txtAddress.setText("123 Đường Nguyễn Văn A, Phường 1, Quận 1, TP. Hồ Chí Minh");
+        txtAddress.setForeground(Color.BLACK);
+        
+        // Set phone
+        txtPhone.setText("0901234567");
+        txtPhone.setForeground(Color.BLACK);
+        
+        // Set account number
+        txtAccountNumber.setText("1234567890");
+        txtAccountNumber.setForeground(Color.BLACK);
+        
+        // Set tax code
+        txtTaxCode.setText("0123456789");
+        txtTaxCode.setForeground(Color.BLACK);
+        
+        // Set representative
+        txtRepresentative.setText("Nguyễn Văn B");
+        txtRepresentative.setForeground(Color.BLACK);
+        
+        // Set position
+        txtPosition.setText("Giám đốc");
+        txtPosition.setForeground(Color.BLACK);
     }
     
     private void loadProductsForRegion(String region) {
